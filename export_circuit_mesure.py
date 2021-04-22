@@ -4,7 +4,7 @@ from os import listdir
 class CircuitCount: #définition d'une classe pour mettre plusieurs informations dans un dictionnaire selon le nom du circuit
     circuit = ""
     mesure = 0
-    nombre = 1
+    nombre = 0
 
     def __init__(self, circuit, mesure):
         self.circuit = circuit
@@ -12,6 +12,8 @@ class CircuitCount: #définition d'une classe pour mettre plusieurs informations
 
     def printValues(self):
         print(self.circuit, self.mesure, "mm x", self.nombre)
+
+
 
 
 newWb = openpyxl.Workbook()
@@ -46,8 +48,8 @@ for file in listdir(): #Itérer tous les fichiers dans le dossier
                 #Ajout des informations dans un dictionnaire pour faire un total à la fin
                 if cell.value not in totalCables.keys():
                     totalCables[cell.value] = CircuitCount(cell.value, cell2.value) #Ajout de la key dans mon dictionnaire des totaux
-                else:
-                    totalCables[cell.value].nombre += int(nombrePanneaux.value) #Ajout du nombre de fois que ce type se répète
+                
+                totalCables[cell.value].nombre += int(nombrePanneaux.value) #Ajout du nombre de fois que ce type se répète
 
             circuitRow = fileRow
             for i in range(len(returnColCircuit)): #Écrire les colonnes que je viens de lire dans le nouveau fichier
@@ -73,4 +75,4 @@ for key in totalCables.keys():
     fileRow += 1
 
 
-newWb.save("test.xlsx")
+newWb.save("total modeles python.xlsx")
