@@ -15,6 +15,7 @@ class CircuitCount:  # définition d'une classe pour mettre plusieurs informatio
         print(self.circuit, self.mesure, "mm x", self.nombre)
 
 
+
 class ExcelWriter:
 
     def __init__(self):
